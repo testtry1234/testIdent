@@ -49,13 +49,12 @@ public class HomeController : Controller
     }
     public async Task<IActionResult> UserRoles()
     {
-        //var users =await userManager.Users.ToListAsync();
-        List<IdentityUser> users =await userManager.Users.ToListAsync();
+        var users =await userManager.Users.ToListAsync();
         List<UserRolesVm> result= new List<UserRolesVm>();
         foreach(var item in users){
+            var roles = await userManager.GetRolesAsync(item);
     
-            result.Add(new UserRolesVm {user =item,
-            userRoles=await userManager.GetRolesAsync(item)
+            result.Add(new UserRolesVm {user =item,userRoles=(List<string>)roles
             });
         }
         ViewBag.allRoles = await roleManager.Roles.ToListAsync();

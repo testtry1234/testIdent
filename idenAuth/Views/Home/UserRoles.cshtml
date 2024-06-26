@@ -14,15 +14,15 @@
 <td>@item.user.UserName</td>
 <td>@item.user.PhoneNumber</td>
 <td>
-@foreach(var role  in ViewBag.allRoles){
+@foreach(var roleName  in ViewBag.allRoles){
 
-    if(item.userRoles.Contains(role.toString())){
-        <a class="btn btn-primary" href="">@role.Name</a>
+    @if(item.userRoles.Contains(roleName.toString())){
+        <a class="btn btn-primary" href="">@roleName</a>
     }
     else{
-        <a class="btn btn-outline-primary" href="">@role.Name</a>
+        <a class="btn btn-outline-primary" href="">@roleName</a>
     }
-    }
+}
     </td>
 </tr>
 }
